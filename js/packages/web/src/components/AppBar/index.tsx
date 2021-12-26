@@ -14,6 +14,11 @@ import {
 import { ConnectButton } from '@oyster/common';
 import { MobileNavbar } from '../MobileNavbar';
 
+// Remove after create store
+import { saveAdmin } from '../../actions/saveAdmin';
+import { useConnection } from '@oyster/common';
+
+
 const getDefaultLinkActions = (connected: boolean) => {
   return [
     <Link to={`/`} key={'explore'}>
@@ -116,7 +121,9 @@ export const LogoLink = () => {
 };
 
 export const AppBar = () => {
-  const { connected } = useWallet();
+  const wallet = useWallet()
+  const connected = wallet.connected;
+  const connection = useConnection();
   return (
     <>
       <MobileNavbar />
