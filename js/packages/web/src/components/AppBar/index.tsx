@@ -14,6 +14,11 @@ import {
 import { ConnectButton } from '@oyster/common';
 import { MobileNavbar } from '../MobileNavbar';
 
+// Remove after create store
+import { saveAdmin } from '../../actions/saveAdmin';
+import { useConnection } from '@oyster/common';
+
+
 const getDefaultLinkActions = (connected: boolean) => {
   return [
     <Link to={`/`} key={'explore'}>
@@ -51,7 +56,7 @@ export const MetaplexMenu = () => {
     return (
       <>
         <Modal
-          title={<img src={'/metaplex-logo.svg'} />}
+          title={<img src={'/test_meta_tanuki.png'} style={{ width: '200px' }}/>}
           visible={isModalVisible}
           footer={null}
           className={'modal-box'}
@@ -110,13 +115,15 @@ export const MetaplexMenu = () => {
 export const LogoLink = () => {
   return (
     <Link to={`/`}>
-      <img src={'/metaplex-logo.svg'} />
+      <img src={'/test_meta_tanuki.png'} style={{ width: '200px' }}/>
     </Link>
   );
 };
 
 export const AppBar = () => {
-  const { connected } = useWallet();
+  const wallet = useWallet()
+  const connected = wallet.connected;
+  const connection = useConnection();
   return (
     <>
       <MobileNavbar />
